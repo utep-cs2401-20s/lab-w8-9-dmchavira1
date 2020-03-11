@@ -18,6 +18,10 @@ class AminoAcidLL{
     this.codons = AminoAcidResources.getCodonListForAminoAcid(this.aminoAcid);
     this.counts = new int[codons.length];
     this.next = null;
+    incrementCodon(inCodon);
+
+  }
+  private void incrementCodon(String c){
 
   }
 
@@ -28,7 +32,16 @@ class AminoAcidLL{
    * If there is no next node, add a new node to the list that would contain the codon. 
    */
   private void addCodon(String inCodon){
-  
+    //
+    if(aminoAcid == AminoAcidResources.getAminoAcidFromCodon(inCodon)){
+      incrementCodon(inCodon);
+    }else{
+      if(next!=null){
+        next.addCodon(inCodon);
+      }else{
+        next = new AminoAcidLL();
+      }
+    }
   }
 
 
